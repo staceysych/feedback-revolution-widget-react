@@ -1,18 +1,23 @@
 {
+  "include": ["src", "types", "../../types", "./vitest.setup.ts"],
   "compilerOptions": {
-    "target": "es5",
-    "module": "esnext",
-    "strict": true,
-    "jsx": "react",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true,
     "esModuleInterop": true,
-    "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "node",
-    "declaration": true,
-    "declarationDir": "dist/types",
-    "outDir": "dist",
-    "sourceMap": true
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "dist"]
+    "isolatedModules": true,
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "target": "esnext",
+    "jsx": "react-jsx",
+    "outDir": "./dist",
+    "types": ["vitest/globals", "@testing-library/jest-dom/vitest"]
+  }
 }
