@@ -1,25 +1,11 @@
-import {
-  Button,
-  Popover,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-  useDisclosure,
-  PopoverCloseButton,
-  Flex,
-  Text,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import theme from "../../theme";
-
-import { ChakraProvider } from "@chakra-ui/react";
+import { cloneElement, ReactElement, useState } from "react";
 
 /* import { ReactComponent as ReviewIcon } from "./assets/review.svg";
 import { ReactComponent as IdeaIcon } from "./assets/idea.svg";
 import { ReactComponent as IssueIcon } from "./assets/issue.svg"; */
 
 interface FeedbackWidgetProps {
-  triggerComponent: React.ReactNode;
+  triggerComponent: ReactElement;
 }
 
 const widgetActions = [
@@ -41,79 +27,39 @@ const widgetActions = [
 ];
 
 const FeedbackWidget = ({ triggerComponent }: FeedbackWidgetProps) => {
-  const { onOpen, onClose, isOpen } = useDisclosure();
+  const [isOpen, setIsOpen] = useState(false);
 
-  const [subtitle, setSubtitle] = useState("");
+  const togglePopover = () => {
+    setIsOpen(!isOpen);
+  };
 
-  console.log(triggerComponent);
+  const triggerElement = cloneElement(triggerComponent, {
+    onClick: togglePopover,
+  });
 
   return (
-    <ChakraProvider theme={theme}>
-      <Popover
-        isOpen={isOpen}
-        onOpen={onOpen}
-        onClose={onClose}
-        placement="bottom"
-      >
-        <PopoverTrigger>{triggerComponent}</PopoverTrigger>
-        <PopoverContent
-          p={5}
-          bg="base.white"
-          boxShadow="lg"
-          borderRadius={10}
-          width={430}
-          height={260}
-          color={"base.text"}
-          pb={2}
-        >
-          <PopoverCloseButton color={"base.text"} />
-          <PopoverHeader
-            border="0"
-            textAlign={"center"}
-            mb={4}
-            transition="all 0.3s ease"
-          >
-            <Text fontSize="xl" fontWeight="bold">
-              What's on your mind?
-            </Text>
-          </PopoverHeader>
-          <Flex
-            justifyContent={"space-between"}
-            alignItems={"flex-start"}
-            gap={6}
-          >
-            {widgetActions.map(({ label, subtitle: sub }) => (
-              <Button
-                display={"flex"}
-                flexDir={"column"}
-                height={118}
-                flex={1}
-                gap={4}
-                onMouseEnter={() => setSubtitle(sub)}
-                onMouseLeave={() => setSubtitle("")}
-                color={"base.text"}
-              >
-                {/* {icon} */}
-                {label}
-              </Button>
-            ))}
-          </Flex>
-          <Text fontSize="sm" m={2} textAlign="center">
-            {subtitle}
-          </Text>
-          <Text
-            fontSize="8px"
-            mt={1}
-            textAlign="center"
-            color={"base.text"}
-            opacity={0.5}
-            margin={"auto 0 0 !important"}
-          >
-            by Feedback Revolution
-          </Text>
-        </PopoverContent>
-      </Popover>
-    </ChakraProvider>
+    <>
+      {triggerElement}
+      <div className="fr">
+        {isOpen && (
+          <div className="fr-card fr-bg-white fr-bg-base-100 fr-w-96 fr-shadow-xl">
+            <figure>
+              <img
+                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                alt="Shoes"
+              />
+            </figure>
+            <div className="fr-card-body">
+              <h2 className="fr-card-title">Shoes!</h2>
+              <p>If a dog chews shoes whose shoes does he choose?</p>
+              <div className="fr-card-actions fr-justify-end">
+                <button className="fr-btn fr-btn-primary">Buy Now</button>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    </>
   );
 };
 
