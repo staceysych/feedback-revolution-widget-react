@@ -1,8 +1,10 @@
 import { cloneElement, ReactElement, useState } from "react";
-
-/* import { ReactComponent as ReviewIcon } from "./assets/review.svg";
-import { ReactComponent as IdeaIcon } from "./assets/idea.svg";
-import { ReactComponent as IssueIcon } from "./assets/issue.svg"; */
+import {
+  XMarkIcon,
+  StarIcon,
+  LightBulbIcon,
+  ExclamationTriangleIcon,
+} from "@heroicons/react/24/outline";
 
 interface FeedbackWidgetProps {
   triggerComponent: ReactElement;
@@ -10,17 +12,17 @@ interface FeedbackWidgetProps {
 
 const widgetActions = [
   {
-    // icon: <ReviewIcon height={44} width={44} />,
+    icon: <StarIcon className="fr-size-10 fr-text-yellow-400" />,
     label: "Review",
     subtitle: "Share what you think about the project",
   },
   {
-    // icon: <IdeaIcon height={50} width={50} />,
+    icon: <LightBulbIcon className="fr-size-10 fr-text-yellow-400" />,
     label: "Idea",
     subtitle: "Share how we can improve",
   },
   {
-    // icon: <IssueIcon height={48} width={48} />,
+    icon: <ExclamationTriangleIcon className="fr-size-10 fr-text-yellow-400" />,
     label: "Issue",
     subtitle: "Report a bug or issue",
   },
@@ -28,6 +30,7 @@ const widgetActions = [
 
 const FeedbackWidget = ({ triggerComponent }: FeedbackWidgetProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const [subtitle, setSubtitle] = useState("");
 
   const togglePopover = () => {
     setIsOpen(!isOpen);
@@ -37,25 +40,46 @@ const FeedbackWidget = ({ triggerComponent }: FeedbackWidgetProps) => {
     onClick: togglePopover,
   });
 
+  const onClose = () => {
+    setIsOpen(false);
+  };
+
   return (
     <>
-      {triggerElement}
+      <div className="fr-relative">{triggerElement}</div>
       <div className="fr">
         {isOpen && (
-          <div className="fr-card fr-bg-white fr-bg-base-100 fr-w-96 fr-shadow-xl">
-            <figure>
-              <img
-                src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                alt="Shoes"
-              />
-            </figure>
-            <div className="fr-card-body">
-              <h2 className="fr-card-title">Shoes!</h2>
-              <p>If a dog chews shoes whose shoes does he choose?</p>
-              <div className="fr-card-actions fr-justify-end">
-                <button className="fr-btn fr-btn-primary">Buy Now</button>
-              </div>
+          <div className="fr-absolute fr-z-50 fr-p-5 fr-bg-white fr-shadow-lg fr-rounded-lg fr-w-96 fr-h-64 ft-text-black fr-mt-4">
+            <button
+              onClick={onClose}
+              className="fr-absolute fr-top-2 fr-right-2 fr-text-black hover:fr-text-gray-700"
+            >
+              <XMarkIcon className="fr-size-6" />
+            </button>
+            <div className="fr-text-center mb-4">
+              <p className="fr-text-xl fr-font-bold fr-text-black">
+                What's on your mind?
+              </p>
             </div>
+            <div className="fr-flex fr-justify-between fr-gap-6 fr-mt-5">
+              {widgetActions.map(({ label, subtitle: sub, icon }, index) => (
+                <button
+                  key={index}
+                  className="fr-flex fr-flex-col fr-items-center fr-justify-center fr-h-28 fr-w-full fr-rounded-lg fr-border fr-border-gray-200 hover:fr-bg-gray-100 fr-transition fr-text-black"
+                  onMouseEnter={() => setSubtitle(sub)}
+                  onMouseLeave={() => setSubtitle("")}
+                >
+                  {icon}
+                  <span className="fr-text-lg fr-font-medium">{label}</span>
+                </button>
+              ))}
+            </div>
+            <p className="fr-text-sm fr-text-center fr-mt-4 fr-text-black">
+              {subtitle}
+            </p>
+            <p className="fr-text-xs fr-absolute fr-bottom-2 fr-left-1/2 fr-transform -fr-translate-x-1/2 fr-text-center fr-text-gray-500 fr-mt-2">
+              by Feedback Revolution
+            </p>
           </div>
         )}
       </div>

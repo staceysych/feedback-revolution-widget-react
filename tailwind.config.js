@@ -14,6 +14,12 @@ export default {
   theme: {
     extend: {},
   },
+  extend: {
+    colors: {
+      brandWhite: "#FAF7F7",
+      brandDarkBlue: "#251055",
+    },
+  },
   plugins: [
     scopedPreflightStyles({
       isolationStrategy: isolateInsideOfContainer(".fr"),
