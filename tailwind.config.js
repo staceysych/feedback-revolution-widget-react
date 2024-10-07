@@ -12,14 +12,16 @@ export default {
   prefix: "fr-",
   content: ["./src/**/*.{ts,tsx}"],
   theme: {
-    extend: {},
-  },
-  extend: {
-    colors: {
-      brandWhite: "#FAF7F7",
-      brandDarkBlue: "#251055",
+    extend: {
+      colors: {
+        brandWhite: "#FAF7F7",
+        brandDarkBlue: "#251055",
+        brandLight: "#F0EAEA",
+        brandLightHover: "#EBE5E5",
+      },
     },
   },
+
   plugins: [
     scopedPreflightStyles({
       isolationStrategy: isolateInsideOfContainer(".fr"),
