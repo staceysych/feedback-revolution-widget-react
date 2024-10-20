@@ -5,27 +5,32 @@ import {
   isolateInsideOfContainer,
 } from "tailwindcss-scoped-preflight";
 
-import daisyui from "daisyui";
-
 export default {
   important: ".fr",
   prefix: "fr-",
   content: ["./src/**/*.{ts,tsx}"],
+  corePlugins: {
+    preflight: false,
+  },
   theme: {
     extend: {
       colors: {
         brandWhite: "#FAF7F7",
         brandDarkBlue: "#251055",
+        brandLightBlue: "#8257E5",
         brandLight: "#F0EAEA",
         brandLightHover: "#EBE5E5",
       },
     },
   },
 
+  daisyui: {
+    themes: false,
+  },
+
   plugins: [
     scopedPreflightStyles({
       isolationStrategy: isolateInsideOfContainer(".fr"),
     }),
-    daisyui,
   ],
 };
