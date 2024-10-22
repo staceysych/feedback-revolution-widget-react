@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 import StarRating from "../../../StarRating";
+import SubmitButton from "../../../SubmitButton";
 
 interface ReviewFormProps {
   onSubmit: () => void;
@@ -30,12 +31,7 @@ const ReviewForm = ({ onSubmit }: ReviewFormProps) => {
       </div>
 
       <StarRating setRating={setRating} rating={rating} />
-      <button
-        className="fr-w-[180px] fr-h-[36px] fr-rounded-lg fr-text-white fr-flex fr-items-center fr-justify-center fr-bg-brandLightBlue fr-cursor-pointer hover:fr-bg-brandDarkBlue fr-transition-all fr-duration-300"
-        onClick={enableSubmit ? onSubmit : undefined}
-      >
-        Submit review
-      </button>
+      <SubmitButton onSubmit={enableSubmit ? onSubmit : undefined} />
     </div>
   );
 };
