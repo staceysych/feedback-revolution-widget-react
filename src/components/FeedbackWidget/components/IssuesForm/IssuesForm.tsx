@@ -1,23 +1,43 @@
 import React, { useState } from "react";
 import SubmitButton from "../../../SubmitButton";
+import { IUser } from "../../types";
+import { ISSUES_API } from "../../../../utils/defaults";
 
 interface ReviewFormProps {
   onSubmit: () => void;
+  projectId: string;
+  user: IUser | undefined;
 }
 
-const IssuesForm = ({ onSubmit }: ReviewFormProps) => {
+const IssuesForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
   const [review, setReview] = useState("");
-  const [category, setCategory] = useState("");
+  const [severity, setSeverity] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleReviewChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReview(e.target.value);
   };
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setCategory(e.target.value);
+  const handleSeverityChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setSeverity(e.target.value);
   };
 
-  const enableSubmit = review.length > 0 && category.length > 0;
+  const enableSubmit = review.length > 0 && severity;
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    const issuesData = {
+      body: review,
+      severity,
+      user,
+    };
+    await fetch(`${ISSUES_API}/${projectId}`, {
+      method: "POST",
+      body: JSON.stringify({ issuesData }),
+    });
+    setLoading(false);
+    onSubmit();
+  };
 
   return (
     <div className="fr-flex fr-flex-col fr-items-center fr-gap-2 fr-w-full">
@@ -35,8 +55,8 @@ const IssuesForm = ({ onSubmit }: ReviewFormProps) => {
       <div className="fr-form-control fr-w-full">
         <select
           className="fr-inline-flex fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-h-10 fr-p-2 fr-text-sm fr-w-full"
-          value={category}
-          onChange={handleCategoryChange}
+          value={severity}
+          onChange={handleSeverityChange}
         >
           <option value="" disabled>
             Select severity
@@ -47,7 +67,10 @@ const IssuesForm = ({ onSubmit }: ReviewFormProps) => {
         </select>
       </div>
 
-      <SubmitButton onSubmit={enableSubmit ? onSubmit : undefined} />
+      <SubmitButton
+        onSubmit={enableSubmit ? handleSubmit : undefined}
+        loading={loading}
+      />
     </div>
   );
 };

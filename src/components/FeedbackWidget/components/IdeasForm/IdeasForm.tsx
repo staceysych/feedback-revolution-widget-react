@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 
 import SubmitButton from "../../../SubmitButton";
+import { IDEAS_API } from "../../../../utils/defaults";
+import { IUser } from "../../types";
 
 interface ReviewFormProps {
   onSubmit: () => void;
+  projectId: string;
+  user: IUser | undefined;
 }
 
-const IdeasForm = ({ onSubmit }: ReviewFormProps) => {
+const IdeasForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
   const [review, setReview] = useState("");
   const [category, setCategory] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleReviewChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReview(e.target.value);
@@ -18,7 +23,22 @@ const IdeasForm = ({ onSubmit }: ReviewFormProps) => {
     setCategory(e.target.value);
   };
 
-  const enableSubmit = review.length > 0 && category.length > 0;
+  const enableSubmit = review.length > 0 && category;
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    const ideaData = {
+      body: review,
+      category,
+      user,
+    };
+    await fetch(`${IDEAS_API}/${projectId}`, {
+      method: "POST",
+      body: JSON.stringify({ ideaData }),
+    });
+    setLoading(false);
+    onSubmit();
+  };
 
   return (
     <div className="fr-flex fr-flex-col fr-items-center fr-gap-2 fr-w-full">
@@ -42,14 +62,17 @@ const IdeasForm = ({ onSubmit }: ReviewFormProps) => {
           <option value="" disabled>
             Select a category
           </option>
-          <option value="feature">Feature</option>
-          <option value="improvement">Improvement</option>
-          <option value="ui">UI/UX</option>
-          <option value="other">Other</option>
+          <option value="Feature">Feature</option>
+          <option value="Improvement">Improvement</option>
+          <option value="UI">UI/UX</option>
+          <option value="Other">Other</option>
         </select>
       </div>
 
-      <SubmitButton onSubmit={enableSubmit ? onSubmit : undefined} />
+      <SubmitButton
+        onSubmit={enableSubmit ? handleSubmit : undefined}
+        loading={loading}
+      />
     </div>
   );
 };

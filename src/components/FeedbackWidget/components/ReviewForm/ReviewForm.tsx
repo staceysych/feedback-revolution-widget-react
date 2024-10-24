@@ -2,20 +2,45 @@ import React, { useState } from "react";
 
 import StarRating from "../../../StarRating";
 import SubmitButton from "../../../SubmitButton";
+import { REVIEWS_API } from "../../../../utils/defaults";
+import { IUser } from "../../types";
 
 interface ReviewFormProps {
   onSubmit: () => void;
+  projectId: string;
+  user: IUser | undefined;
 }
 
-const ReviewForm = ({ onSubmit }: ReviewFormProps) => {
+const ReviewForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   const handleReviewChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReview(e.target.value);
   };
 
   const enableSubmit = review.length > 0 && rating > 0;
+
+  const handleSubmit = async () => {
+    setLoading(true);
+    const reviewData = {
+      body: review,
+      rating: rating,
+      user,
+    };
+    const res = await fetch(`${REVIEWS_API}/${projectId}`, {
+      method: "POST",
+      body: JSON.stringify({ reviewData }),
+    });
+
+    console.log({ res });
+
+    if (res.ok) {
+      setLoading(false);
+      onSubmit();
+    }
+  };
 
   return (
     <div className="fr-flex fr-flex-col fr-items-center fr-gap-2 fr-w-full">
@@ -31,7 +56,10 @@ const ReviewForm = ({ onSubmit }: ReviewFormProps) => {
       </div>
 
       <StarRating setRating={setRating} rating={rating} />
-      <SubmitButton onSubmit={enableSubmit ? onSubmit : undefined} />
+      <SubmitButton
+        onSubmit={enableSubmit ? handleSubmit : undefined}
+        loading={loading}
+      />
     </div>
   );
 };

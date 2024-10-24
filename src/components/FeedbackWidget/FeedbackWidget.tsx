@@ -9,6 +9,8 @@ const FeedbackWidget = ({
   triggerComponent,
   open = false,
   closable = true,
+  projectId,
+  user,
 }: FeedbackWidgetProps) => {
   const [isOpen, setIsOpen] = useState(open);
   const [feedbackType, setFeedbackType] = useState<FeedbackType | undefined>(
@@ -73,6 +75,8 @@ const FeedbackWidget = ({
                 feedbackType={feedbackType}
                 setFeedbackType={setFeedbackType}
                 onSubmit={onSubmit}
+                projectId={projectId}
+                user={user}
               />
             )}
             <p className="fr-text-[8px] fr-absolute fr-bottom-2 fr-left-1/2 fr-transform -fr-translate-x-1/2 fr-text-center fr-text-brandDarkBlue fr-opacity-40 fr-mt-2">
