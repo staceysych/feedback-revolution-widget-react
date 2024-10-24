@@ -26,14 +26,14 @@ const IssuesForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
 
   const handleSubmit = async () => {
     setLoading(true);
-    const issuesData = {
+    const issueData = {
       body: review,
       severity,
       user,
     };
     await fetch(`${ISSUES_API}/${projectId}`, {
       method: "POST",
-      body: JSON.stringify({ issuesData }),
+      body: JSON.stringify({ issueData }),
     });
     setLoading(false);
     onSubmit();
