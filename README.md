@@ -1,4 +1,4 @@
-# @feedback-evolution-widget-react
+# feedback-evolution-widget-react
 
 The [Feedback Evolution](https://www.feedback-evolution.com/) widget for React apps.
 

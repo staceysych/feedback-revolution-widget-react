@@ -61,9 +61,9 @@ const IssuesForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
           <option value="" disabled>
             Select severity
           </option>
-          <option value="critical">Critical</option>
-          <option value="medium">Medium</option>
-          <option value="low">low</option>
+          <option value="Critical">Critical</option>
+          <option value="Medium">Medium</option>
+          <option value="Low">low</option>
         </select>
       </div>
 
