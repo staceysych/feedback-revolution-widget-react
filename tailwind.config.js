@@ -24,10 +24,6 @@ export default {
     },
   },
 
-  daisyui: {
-    themes: false,
-  },
-
   plugins: [
     scopedPreflightStyles({
       isolationStrategy: isolateInsideOfContainer(".fr"),

@@ -1,12 +1,13 @@
-import React, { useState } from "react";
 import { StarIcon as SolidStarIcon } from "@heroicons/react/24/solid";
 import { StarIcon as OutlineStarIcon } from "@heroicons/react/24/outline";
 
 interface StarRatingProps {
   totalStars?: number;
   onRatingChange?: (rating: number) => void;
-  setRating: (rating: number) => void;
+  setRating?: (rating: number) => void;
   rating: number;
+  showRating?: boolean;
+  size?: number;
 }
 
 const StarRating = ({
@@ -14,9 +15,11 @@ const StarRating = ({
   onRatingChange,
   setRating,
   rating,
+  showRating = true,
+  size = 8,
 }: StarRatingProps) => {
   const handleRating = (newRating: number) => {
-    setRating(newRating);
+    setRating && setRating(newRating);
     if (onRatingChange) {
       onRatingChange(newRating);
     }
@@ -32,16 +35,18 @@ const StarRating = ({
             onClick={() => handleRating(index + 1)}
           >
             {index < rating ? (
-              <SolidStarIcon className="fr-text-yellow-500 fr-size-8" />
+              <SolidStarIcon className={`fr-text-yellow-500 fr-size-${size}`} />
             ) : (
-              <OutlineStarIcon className="fr-text-gray-300 fr-size-8" />
+              <OutlineStarIcon className={`fr-text-gray-300 fr-size-${size}`} />
             )}
           </button>
         ))}
       </div>
-      <p className="fr-text-sm fr-text-gray-500">
-        {rating}/{totalStars}
-      </p>
+      {showRating && (
+        <p className="fr-text-sm fr-text-gray-500">
+          {rating}/{totalStars}
+        </p>
+      )}
     </div>
   );
 };

@@ -34,8 +34,6 @@ const ReviewForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
       body: JSON.stringify({ reviewData }),
     });
 
-    console.log({ res });
-
     if (res.ok) {
       setLoading(false);
       onSubmit();
