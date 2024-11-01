@@ -1,5 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 
+import daisyui from "daisyui";
+
 import {
   scopedPreflightStyles,
   isolateInsideOfContainer,
@@ -28,5 +30,12 @@ export default {
     scopedPreflightStyles({
       isolationStrategy: isolateInsideOfContainer(".fr"),
     }),
+    daisyui,
   ],
+
+  daisyui: {
+    themes: false,
+    logs: true,
+    themeRoot: ".fr",
+  },
 };
