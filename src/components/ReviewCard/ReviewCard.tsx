@@ -28,7 +28,7 @@ const ReviewCard = ({ data, sliderWidth = 600 }: ReviewCardProps) => {
           <Icon className="fr-text-brandDarkBlue fr-size-6" />
           <div className="fr-flex fr-items-center fr-gap-3">
             <p className="fr-flex fr-text-xs fr-text-gray-400 fr-w-full"></p>
-            <StarRating rating={rating} showRating={false} size={6} />
+            <StarRating rating={rating} showRating={false} size={24} />
           </div>
         </div>
         <div className="fr-flex fr-flex-col">
@@ -39,7 +39,7 @@ const ReviewCard = ({ data, sliderWidth = 600 }: ReviewCardProps) => {
           </div>
         </div>
         <div className="fr-flex fr-justify-between">
-          <p className="fr-text-xs fr-text-brandDarkBlue fr-font-bold">
+          <p className="fr-text-xs fr-text-brandDarkBlue">
             {user?.name ? user.name : "Visitor"}
           </p>
           <p className="fr-text-xs fr-text-gray-400">{creationDate}</p>

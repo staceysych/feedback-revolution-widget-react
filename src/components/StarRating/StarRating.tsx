@@ -16,7 +16,7 @@ const StarRating = ({
   setRating,
   rating,
   showRating = true,
-  size = 8,
+  size = 32,
 }: StarRatingProps) => {
   const handleRating = (newRating: number) => {
     setRating && setRating(newRating);
@@ -35,9 +35,15 @@ const StarRating = ({
             onClick={() => handleRating(index + 1)}
           >
             {index < rating ? (
-              <SolidStarIcon className={`fr-text-yellow-500 fr-size-${size}`} />
+              <SolidStarIcon
+                className="fr-text-yellow-500"
+                style={{ width: `${size}px`, height: `${size}px` }}
+              />
             ) : (
-              <OutlineStarIcon className={`fr-text-gray-300 fr-size-${size}`} />
+              <OutlineStarIcon
+                className="fr-text-gray-300"
+                style={{ width: `${size}px`, height: `${size}px` }}
+              />
             )}
           </button>
         ))}
