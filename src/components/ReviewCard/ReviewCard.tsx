@@ -33,7 +33,7 @@ const ReviewCard = ({ data, sliderWidth = 600 }: ReviewCardProps) => {
         </div>
         <div className="fr-flex fr-flex-col">
           <div
-            className={`fr-text-sm fr-text-brandDarkBlue fr-overflow-hidden fr-font-bold`}
+            className={`fr-text-sm fr-text-left fr-text-brandDarkBlue fr-overflow-hidden fr-font-bold`}
           >
             {body}
           </div>

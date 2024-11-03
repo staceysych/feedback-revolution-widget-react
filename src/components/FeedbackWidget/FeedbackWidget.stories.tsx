@@ -20,4 +20,4 @@ export default {
 } as Meta<typeof FeedbackWidget>;
 
 export const FeedbackWidgetStory = FeedbackWidgetBasic.bind({});
-FeedbackWidgetStory.storyName = "FeedbackWidget";
+FeedbackWidgetStory.storyName = "FeedbackWidgetStory";

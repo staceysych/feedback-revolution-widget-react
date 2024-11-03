@@ -48,7 +48,7 @@ const ReviewCardsSlider = ({
                 {!!index && (
                   <a
                     href={`#slide${index - 1}`}
-                    className="fr-absolute fr-left-0 fr-top-1/2 fr-transform fr--translate-y-1/2 fr-p-2 fr-cursor-pointer hover:fr-bg-gray-100 fr-rounded-full fr-transition-all fr-duration-300"
+                    className="fr-absolute fr-left-0 fr-top-1/2 fr-transform fr--translate-y-1/2 fr-p-2 fr-cursor-pointer fr-bg-brandWhite hover:fr-bg-gray-100 fr-rounded-full fr-transition-all fr-duration-300"
                   >
                     <ChevronLeftIcon className="fr-text-brandDarkBlue fr-size-6" />
                   </a>
@@ -63,7 +63,7 @@ const ReviewCardsSlider = ({
                 {index !== data.length - 1 && (
                   <a
                     href={`#slide${index + 1}`}
-                    className="fr-absolute fr-right-0 fr-top-1/2 fr-transform fr--translate-y-1/2 fr-p-2 fr-cursor-pointer hover:fr-bg-gray-100 fr-rounded-full fr-transition-all fr-duration-300"
+                    className="fr-absolute fr-right-0 fr-top-1/2 fr-transform fr--translate-y-1/2 fr-p-2 fr-cursor-pointer fr-bg-brandWhite hover:fr-bg-gray-100 fr-rounded-full fr-transition-all fr-duration-300"
                   >
                     <ChevronRightIcon className="fr-text-brandDarkBlue fr-size-6" />
                   </a>

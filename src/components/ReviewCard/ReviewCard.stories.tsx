@@ -24,4 +24,4 @@ export default {
 } as Meta<typeof ReviewCard>;
 
 export const ReviewCardStory = ReviewCardBasic.bind({});
-ReviewCardStory.storyName = "ReviewCard";
+ReviewCardStory.storyName = "ReviewCardStory";
