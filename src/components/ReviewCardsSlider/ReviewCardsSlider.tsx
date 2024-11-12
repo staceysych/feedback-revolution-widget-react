@@ -33,7 +33,7 @@ const ReviewCardsSlider = ({
 
   return (
     <div className="fr">
-      <div className="fr-flex">
+      <div className="fr-flex fr-flex-col">
         <div
           className="!fr-carousel fr-rounded-box fr-w-[100vw]"
           style={{ maxWidth: `${sliderWidth}px` }}
@@ -42,17 +42,9 @@ const ReviewCardsSlider = ({
             data.map((reviewChunk, index) => (
               <div
                 key={index}
-                id={`slide${index}`}
+                id={`slide-review-${index}`}
                 className="!fr-carousel-item fr-relative fr-w-full fr-flex fr-justify-start fr-items-center fr-flex-col fr-gap-6 fr-py-4"
               >
-                {!!index && (
-                  <a
-                    href={`#slide${index - 1}`}
-                    className="fr-absolute fr-left-0 fr-top-1/2 fr-transform fr--translate-y-1/2 fr-p-2 fr-cursor-pointer fr-bg-brandWhite hover:fr-bg-gray-100 fr-rounded-full fr-transition-all fr-duration-300"
-                  >
-                    <ChevronLeftIcon className="fr-text-brandDarkBlue fr-size-6" />
-                  </a>
-                )}
                 {reviewChunk?.map((review) => (
                   <ReviewCard
                     key={review._id}
@@ -60,20 +52,25 @@ const ReviewCardsSlider = ({
                     sliderWidth={sliderWidth}
                   />
                 ))}
-                {index !== data.length - 1 && (
-                  <a
-                    href={`#slide${index + 1}`}
-                    className="fr-absolute fr-right-0 fr-top-1/2 fr-transform fr--translate-y-1/2 fr-p-2 fr-cursor-pointer fr-bg-brandWhite hover:fr-bg-gray-100 fr-rounded-full fr-transition-all fr-duration-300"
-                  >
-                    <ChevronRightIcon className="fr-text-brandDarkBlue fr-size-6" />
-                  </a>
-                )}
               </div>
             ))
           ) : (
             <span className="!fr-loading !fr-loading-dots !fr-loading-lg !fr-bg-brandDarkBlue fr-inline-block fr-mx-auto"></span>
           )}
         </div>
+        {data.length > 1 && (
+          <div className="fr-flex fr-w-full fr-justify-center fr-gap-2 fr-py-2">
+            {data.map((_, index) => (
+              <a
+                href={`#slide-review-${index}`}
+                className="!fr-btn !fr-btn-xs"
+                key={`slide-review-${index}`}
+              >
+                {index + 1}
+              </a>
+            ))}
+          </div>
+        )}
       </div>
     </div>
   );

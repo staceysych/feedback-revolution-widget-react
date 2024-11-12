@@ -43,7 +43,7 @@ const ProgressCardsSlider = ({
             data.map((ideaChunk, index) => (
               <div
                 key={index}
-                id={`slide${index}`}
+                id={`slide-progress-${index}`}
                 className="!fr-carousel-item fr-relative fr-w-full fr-flex fr-justify-start fr-items-center fr-flex-col fr-gap-6 fr-py-4"
               >
                 {ideaChunk?.map((idea) => (
@@ -51,6 +51,7 @@ const ProgressCardsSlider = ({
                     key={idea._id}
                     data={idea}
                     projectId={projectId}
+                    sliderWidth={sliderWidth}
                   />
                 ))}
               </div>
@@ -63,9 +64,9 @@ const ProgressCardsSlider = ({
           <div className="fr-flex fr-w-full fr-justify-center fr-gap-2 fr-py-2">
             {data.map((_, index) => (
               <a
-                href={`#slide${index}`}
+                href={`#slide-progress-${index}`}
                 className="!fr-btn !fr-btn-xs"
-                key={`slide-${index}`}
+                key={`slide-progress-${index}`}
               >
                 {index + 1}
               </a>

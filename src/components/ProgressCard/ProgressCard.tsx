@@ -10,9 +10,14 @@ import debounce from "lodash-es/debounce";
 interface ProgressCardProps {
   data: IdeaData;
   projectId: string;
+  sliderWidth?: number;
 }
 
-const ProgressCard = ({ data, projectId }: ProgressCardProps) => {
+const ProgressCard = ({
+  data,
+  projectId,
+  sliderWidth = 800,
+}: ProgressCardProps) => {
   const { body, votes, progress } = data;
   const [loading, setLoading] = useState(false);
   const [currentVotes, setCurrentVotes] = useState(votes);
@@ -47,7 +52,7 @@ const ProgressCard = ({ data, projectId }: ProgressCardProps) => {
     <div className="fr fr-flex fr-w-full fr-justify-center">
       <div
         className={`fr-flex fr-bg-brandWhite fr-shadow-lg fr-rounded-lg fr-p-4 fr-min-w-[300px] fr-w-full fr-gap-4 fr-flex-col md:fr-flex-row`}
-        style={{ maxWidth: `700px` }}
+        style={{ maxWidth: `${sliderWidth - 100}px` }}
       >
         <button
           className={`${buttonClasses} !fr-hidden md:!fr-flex`}
