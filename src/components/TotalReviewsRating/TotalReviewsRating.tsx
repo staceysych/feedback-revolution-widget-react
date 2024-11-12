@@ -25,7 +25,6 @@ const TotalReviewRatings = ({ projectId }: TotalReviewsRatingProps) => {
     fetchReviews();
   }, [projectId]);
 
-  console.log(reviews);
   const totalReviews = reviews.length;
 
   const countReviews = () => {
@@ -46,13 +45,9 @@ const TotalReviewRatings = ({ projectId }: TotalReviewsRatingProps) => {
     reviews.reduce((acc, { rating }) => acc + rating, 0) / reviews.length
   ).toFixed(1);
 
-  console.log(averageRating);
-
   useEffect(() => {
     countReviews();
   }, [reviews]);
-
-  console.log({ ratingPercentage });
 
   const writeReviewButton = (
     <button className="!fr-btn !fr-text-white !fr-bg-brandLightBlue hover:!fr-bg-brandDarkBlue fr-mt-4 !fr-min-h-[40px] !fr-h-[40px]">

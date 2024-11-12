@@ -13,7 +13,7 @@ const mockProps = {
 };
 
 const ProgressCardBasic: StoryFn<typeof ProgressCard> = () => {
-  return <ProgressCard {...mockProps} />;
+  return <ProgressCard {...mockProps} projectId="" />;
 };
 
 export default {

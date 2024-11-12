@@ -1,5 +1,3 @@
-import StarRating from "../StarRating/StarRating";
-import { ChatBubbleLeftEllipsisIcon as Icon } from "@heroicons/react/24/outline";
 import { Progress } from "../../types/common";
 import { CheckIcon } from "@heroicons/react/24/solid";
 
@@ -21,7 +19,7 @@ const ProgressTracker = ({ progress }: ProgressTrackerProps) => {
 
           const hasCompleted = (!isDisabled && !isActive) || isDone;
           return (
-            <div className="fr-flex fr-flex-grow fr-items-center">
+            <div className="fr-flex fr-flex-grow fr-items-center" key={index}>
               <div
                 key={index}
                 className="fr-flex fr-flex-col fr-items-center fr-justify-center fr-flex-grow fr-gap-1 fr-text-brandDarkBlue fr-w-[60px] fr-text-xs"
