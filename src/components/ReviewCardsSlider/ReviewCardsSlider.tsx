@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import ReviewCard from "../ReviewCard/ReviewCard";
 import { ReviewData } from "../ReviewCard/types";
 import { REVIEWS_API } from "../../utils/defaults";
-import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 
 interface ReviewCardsProps {
   projectId: string;
@@ -17,6 +16,7 @@ const ReviewCardsSlider = ({
 
   useEffect(() => {
     const fetchReviews = async () => {
+      console.log("called");
       const res = await fetch(`${REVIEWS_API}/${projectId}`);
       const resJson = await res.json();
 
