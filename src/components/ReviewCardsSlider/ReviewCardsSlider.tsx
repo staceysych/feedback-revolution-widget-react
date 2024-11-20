@@ -29,7 +29,7 @@ const ReviewCardsSlider = ({
     };
 
     fetchReviews();
-  }, [projectId]);
+  }, []);
 
   return (
     <div className="fr">

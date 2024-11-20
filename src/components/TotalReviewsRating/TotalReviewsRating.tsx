@@ -23,7 +23,7 @@ const TotalReviewRatings = ({ projectId }: TotalReviewsRatingProps) => {
     };
 
     fetchReviews();
-  }, [projectId]);
+  }, []);
 
   const totalReviews = reviews.length;
 

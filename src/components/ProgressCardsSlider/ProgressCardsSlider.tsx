@@ -30,7 +30,7 @@ const ProgressCardsSlider = ({
     };
 
     fetchIdeas();
-  }, [projectId]);
+  }, []);
 
   return (
     <div className="fr">
