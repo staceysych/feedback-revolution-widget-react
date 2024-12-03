@@ -16,8 +16,7 @@ const ReviewCardsSlider = ({
 
   useEffect(() => {
     const fetchReviews = async () => {
-      console.log("called");
-      const res = await fetch(`${REVIEWS_API}/${projectId}`);
+      const res = await fetch(`${REVIEWS_API}/${projectId}/status`);
       const resJson = await res.json();
 
       const chunkedData = [];
