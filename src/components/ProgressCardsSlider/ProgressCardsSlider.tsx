@@ -18,7 +18,7 @@ const ProgressCardsSlider = ({
 
   useEffect(() => {
     const fetchIdeas = async () => {
-      const res = await fetch(`${IDEAS_API}/${projectId}`);
+      const res = await fetch(`${IDEAS_API}/${projectId}/status`);
       const resJson = await res.json();
 
       const chunkedData = [];
