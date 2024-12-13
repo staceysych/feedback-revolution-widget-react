@@ -30,6 +30,8 @@ const IssuesForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
       body: review,
       severity,
       user,
+      page: window.location.href,
+      device: navigator.userAgent
     };
     await fetch(`${ISSUES_API}/${projectId}`, {
       method: "POST",
