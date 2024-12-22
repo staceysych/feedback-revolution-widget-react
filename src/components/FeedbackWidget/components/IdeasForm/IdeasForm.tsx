@@ -50,6 +50,7 @@ const IdeasForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
 
       <div className="fr-form-control fr-w-full">
         <textarea
+          autoFocus
           className="fr-inline-flex fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-h-20 fr-p-2 fr-text-sm fr-w-full"
           placeholder="Got a great idea? Let us know how we can make things better!"
           value={review}

@@ -1,4 +1,4 @@
-import { cloneElement, useState, useEffect, useRef } from "react";
+import { cloneElement, useState } from "react";
 import { ArrowLeftIcon, XMarkIcon } from "@heroicons/react/24/outline";
 import { FeedbackType, FeedbackWidgetProps } from "./types";
 
@@ -17,21 +17,6 @@ const FeedbackWidget = ({
     undefined
   );
   const [submitted, setSubmitted] = useState(false);
-  const [position, setPosition] = useState({ top: true, right: false });
-  const widgetRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    if (isOpen && widgetRef.current) {
-      const rect = widgetRef.current.getBoundingClientRect();
-      const viewportHeight = window.innerHeight;
-      const viewportWidth = window.innerWidth;
-
-      setPosition({
-        top: rect.bottom < viewportHeight,
-        right: rect.right > viewportWidth,
-      });
-    }
-  }, [isOpen]);
 
   const togglePopover = () => {
     setIsOpen(!isOpen);
@@ -54,7 +39,7 @@ const FeedbackWidget = ({
   };
 
   return (
-    <div style={{ position: triggerComponent ? "relative" : "static", width: "100%" }}>
+    <div style={{ position: triggerComponent ? "relative" : "static", width: triggerComponent ? 'fit-content' : "100%" }}>
       {triggerElement && <div>{triggerElement}</div>}
       <div
         style={{
@@ -63,17 +48,15 @@ const FeedbackWidget = ({
           minWidth: "320px",
           maxWidth: "384px",
           margin: "0 auto",
-          [position.right ? 'right' : 'left']: 0,
-          [position.top ? 'top' : 'bottom']: triggerComponent ? '100%' : 0,
+          left: '50%',
+          transform: 'translateX(-50%)',
+          top: triggerComponent ? '100%' : 0,
         }}
         className="fr"
       >
         {isOpen && (
           <div
-            ref={widgetRef}
-            className={`fr-relative fr-p-5 fr-bg-brandWhite fr-shadow-lg fr-rounded-lg fr-w-full sm:fr-w-96 fr-h-64 fr-text-brandDarkBlue fr-mt-4 fr-flex fr-flex-col fr-items-center fr-justify-start ${
-              position.top ? 'fr-mt-4' : 'fr-mb-4'
-            }`}
+            className="fr-relative fr-p-5 fr-bg-brandWhite fr-shadow-lg fr-rounded-lg fr-w-full sm:fr-w-96 fr-h-64 fr-text-brandDarkBlue fr-mt-2 fr-flex fr-flex-col fr-items-center fr-justify-start"
           >
             {feedbackType && (
               <button
