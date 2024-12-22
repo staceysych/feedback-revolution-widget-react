@@ -12,11 +12,11 @@ const DefaultView = ({ setFeedbackType }: DefaultViewProps) => {
   return (
     <>
       <div className="fr-text-center mb-4">
-        <p className="fr-text-xl fr-font-bold fr-text-brandDarkBlue">
+        <p className="fr-text-lg sm:fr-text-xl fr-font-bold fr-text-brandDarkBlue">
           What's on your mind?
         </p>
       </div>
-      <div className="fr-flex fr-justify-between fr-gap-6 fr-mt-5 fr-w-full">
+      <div className="fr-flex fr-justify-between fr-gap-2 sm:fr-gap-6 fr-mt-5 fr-w-full">
         {widgetActions.map(({ type, subtitle: sub, icon }, index) => (
           <button
             key={index}
@@ -26,11 +26,11 @@ const DefaultView = ({ setFeedbackType }: DefaultViewProps) => {
             onClick={() => setFeedbackType(type)}
           >
             {icon}
-            <span className="fr-text-lg fr-font-medium">{type}</span>
+            <span className="fr-text-sm sm:fr-text-lg fr-font-medium">{type}</span>
           </button>
         ))}
       </div>
-      <p className="fr-text-sm fr-text-center fr-mt-4 fr-text-brandDarkBlue">
+      <p className="fr-text-xs sm:fr-text-sm fr-text-center fr-mt-4 fr-text-brandDarkBlue">
         {subtitle || "Select an option to provide feedback"}
       </p>
     </>

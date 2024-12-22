@@ -33,12 +33,12 @@ const SubmitButton = ({ onSubmit, loading, useEmail, onToggleEmail, enableEmail 
           <input
             type="email"
             placeholder="Enter your email"
-            className="fr-flex-1 fr-h-[36px] fr-p-2 fr-text-sm fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg"
+            className="fr-flex-1 fr-h-[32px] sm:fr-h-[36px] fr-p-2 fr-text-sm fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <button
-            className="fr-w-[80px] fr-h-[36px] fr-rounded-lg fr-text-white fr-flex fr-items-center fr-justify-center fr-bg-brandLightBlue fr-cursor-pointer hover:fr-bg-brandDarkBlue fr-transition-all fr-duration-300"
+            className="fr-w-[80px] fr-h-[32px] sm:fr-h-[36px] fr-rounded-lg fr-text-white fr-flex fr-items-center fr-justify-center fr-bg-brandLightBlue fr-cursor-pointer hover:fr-bg-brandDarkBlue fr-transition-all fr-duration-300 fr-text-sm"
             onClick={() => onSubmit?.(email)}
             disabled={loading || !email}
           >
@@ -47,7 +47,7 @@ const SubmitButton = ({ onSubmit, loading, useEmail, onToggleEmail, enableEmail 
         </div>
       ) : (
         <button
-          className="fr-w-[180px] fr-h-[36px] fr-rounded-lg fr-text-white fr-flex fr-items-center fr-justify-center fr-bg-brandLightBlue fr-cursor-pointer hover:fr-bg-brandDarkBlue fr-transition-all fr-duration-300 fr-mx-auto"
+          className="fr-w-[180px] fr-h-[32px] sm:fr-h-[36px] fr-rounded-lg fr-text-white fr-flex fr-items-center fr-justify-center fr-bg-brandLightBlue fr-cursor-pointer hover:fr-bg-brandDarkBlue fr-transition-all fr-duration-300 fr-mx-auto fr-text-sm sm:fr-text-base"
           onClick={() => onSubmit?.()}
           disabled={loading}
         >

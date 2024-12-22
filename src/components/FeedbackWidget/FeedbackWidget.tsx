@@ -39,17 +39,20 @@ const FeedbackWidget = ({
   };
 
   return (
-    <div style={{ position: triggerComponent ? "relative" : "static" }}>
+    <div style={{ position: triggerComponent ? "relative" : "static", width: "100%" }}>
       {triggerElement && <div>{triggerElement}</div>}
       <div
         style={{
           position: triggerComponent ? "absolute" : "static",
           zIndex: triggerElement ? 999 : 0,
+          minWidth: "320px",
+          maxWidth: "384px",
+          margin: "0 auto",
         }}
         className="fr"
       >
         {isOpen && (
-          <div className="fr-relative fr-left-0 fr-top-0 fr-p-5 fr-bg-brandWhite fr-shadow-lg fr-rounded-lg fr-w-96 fr-h-64 fr-text-brandDarkBlue fr-mt-4 fr-flex fr-flex-col fr-items-center fr-justify-start">
+          <div className="fr-relative fr-left-0 fr-top-0 fr-p-5 fr-bg-brandWhite fr-shadow-lg fr-rounded-lg fr-w-full sm:fr-w-96 fr-h-64 fr-text-brandDarkBlue fr-mt-4 fr-flex fr-flex-col fr-items-center fr-justify-start">
             {feedbackType && (
               <button
                 onClick={() => setFeedbackType(undefined)}
@@ -79,7 +82,7 @@ const FeedbackWidget = ({
                 user={user}
               />
             )}
-            <p className="fr-text-[8px] fr-absolute fr-bottom-1.5 fr-left-1/2 fr-transform -fr-translate-x-1/2 fr-text-center fr-text-brandDarkBlue fr-opacity-40 fr-mt-2">
+            <p className="fr-text-[8px] fr-absolute fr-bottom-1 fr-left-1/2 fr-transform -fr-translate-x-1/2 fr-text-center fr-text-brandDarkBlue fr-opacity-40 fr-mt-2">
               by Feedback Evolution
             </p>
           </div>

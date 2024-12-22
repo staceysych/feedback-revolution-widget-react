@@ -4,10 +4,10 @@ import FeedbackWidget from "./FeedbackWidget";
 
 const FeedbackWidgetBasic: StoryFn<typeof FeedbackWidget> = () => {
   return (
-    <FeedbackWidget
+      <FeedbackWidget
       triggerComponent={<button>Click me</button>}
-      projectId={"507f1f77bcf86cd799439011"}
-    />
+      projectId={"507f1f77bcf86cd799439011"} />
+
   );
 };
 
