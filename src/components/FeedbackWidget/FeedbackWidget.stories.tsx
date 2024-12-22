@@ -6,7 +6,7 @@ const FeedbackWidgetBasic: StoryFn<typeof FeedbackWidget> = () => {
   return (
     <FeedbackWidget
       triggerComponent={<button>Click me</button>}
-      projectId={""}
+      projectId={"507f1f77bcf86cd799439011"}
     />
   );
 };

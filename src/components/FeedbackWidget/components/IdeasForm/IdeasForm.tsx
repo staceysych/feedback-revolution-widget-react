@@ -14,6 +14,7 @@ const IdeasForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
   const [review, setReview] = useState("");
   const [category, setCategory] = useState("");
   const [loading, setLoading] = useState(false);
+  const [useEmail, setUseEmail] = useState(false);
 
   const handleReviewChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReview(e.target.value);
@@ -25,12 +26,15 @@ const IdeasForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
 
   const enableSubmit = review.length > 0 && category;
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (email?: string) => {
     setLoading(true);
     const ideaData = {
       body: review,
       category,
-      user,
+      user: user || email ? {
+        email: email || user?.email,
+        name: user?.name,
+      } : undefined,
     };
     await fetch(`${IDEAS_API}/${projectId}`, {
       method: "POST",
@@ -41,8 +45,8 @@ const IdeasForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
   };
 
   return (
-    <div className="fr-flex fr-flex-col fr-items-center fr-gap-2 fr-w-full">
-      <h2 className="fr-text-xl fr-font-bold">Share your idea</h2>
+    <div className="fr-flex fr-flex-col fr-items-center fr-gap-1 fr-w-full fr-h-full fr-justify-between">
+      <h2 className="fr-text-md fr-font-bold">Share your idea</h2>
 
       <div className="fr-form-control fr-w-full">
         <textarea
@@ -55,7 +59,7 @@ const IdeasForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
 
       <div className="fr-form-control fr-w-full">
         <select
-          className="fr-inline-flex fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-h-10 fr-p-2 fr-text-sm fr-w-full"
+          className="fr-inline-flex fr-h-[36px] fr-p-2 fr-text-sm fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-w-full"
           value={category}
           onChange={handleCategoryChange}
         >
@@ -72,6 +76,9 @@ const IdeasForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
       <SubmitButton
         onSubmit={enableSubmit ? handleSubmit : undefined}
         loading={loading}
+        enableEmail={!user}
+        useEmail={useEmail}
+        onToggleEmail={setUseEmail}
       />
     </div>
   );
