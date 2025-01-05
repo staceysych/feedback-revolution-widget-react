@@ -15,18 +15,32 @@ const ProgressCardsSlider = ({
   sliderWidth = 800,
 }: ReviewCardsProps) => {
   const [data, setData] = useState<IdeaData[][]>([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const fetchIdeas = async () => {
-      const res = await fetch(`${IDEAS_API}/${projectId}/status`);
-      const resJson = await res.json();
+      setIsLoading(true);
+      try {
+        const res = await fetch(`${IDEAS_API}/${projectId}/status`);
+        const resJson = await res.json();
 
-      const chunkedData = [];
-      for (let i = 0; i < resJson.data.length; i += 3) {
-        chunkedData.push(resJson.data.slice(i, i + 3));
+        if (!resJson.data?.length) {
+          setData([]);
+          return;
+        }
+
+        const chunkedData = [];
+        for (let i = 0; i < resJson.data.length; i += 3) {
+          chunkedData.push(resJson.data.slice(i, i + 3));
+        }
+
+        setData(chunkedData);
+      } catch (error) {
+        console.error('Error fetching ideas:', error);
+        setData([]);
+      } finally {
+        setIsLoading(false);
       }
-
-      setData(chunkedData);
     };
 
     fetchIdeas();
@@ -39,7 +53,11 @@ const ProgressCardsSlider = ({
           className="!fr-carousel fr-rounded-box fr-w-[100vw]"
           style={{ maxWidth: `${sliderWidth}px` }}
         >
-          {!!data.length ? (
+          {isLoading ? (
+            <div className="fr-flex fr-justify-center fr-items-center fr-w-full fr-py-4">
+              <span className="!fr-loading !fr-loading-dots !fr-loading-lg !fr-bg-brandDarkBlue fr-inline-block fr-mx-auto"></span>
+            </div>
+          ) : !!data.length ? (
             data.map((ideaChunk, index) => (
               <div
                 key={index}
@@ -57,10 +75,12 @@ const ProgressCardsSlider = ({
               </div>
             ))
           ) : (
-            <span className="!fr-loading !fr-loading-dots !fr-loading-lg !fr-bg-brandDarkBlue fr-inline-block fr-mx-auto"></span>
+            <div className="fr-flex fr-justify-center fr-items-center fr-w-full fr-py-8">
+              <span className="fr-text-gray-500">No feature requests</span>
+            </div>
           )}
         </div>
-        {data.length > 1 && (
+        {!isLoading && data.length > 1 && (
           <div className="fr-flex fr-w-full fr-justify-center fr-gap-2 fr-py-2">
             {data.map((_, index) => (
               <a

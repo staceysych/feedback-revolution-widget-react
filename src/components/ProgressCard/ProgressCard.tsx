@@ -68,7 +68,7 @@ const ProgressCard = ({
         >
           {body}
         </div>
-        <div className="fr-flex fr-justify-between">
+        <div className="fr-flex fr-justify-between md:fr-ml-auto">
           <button
             className={`${buttonClasses} md:!fr-hidden`}
             disabled={loading}
