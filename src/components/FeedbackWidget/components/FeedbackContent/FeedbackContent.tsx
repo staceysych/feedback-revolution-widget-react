@@ -11,6 +11,7 @@ interface FeedbackContentProps {
   onSubmit: () => void;
   projectId: string;
   user: IUser | undefined;
+  darkMode?: boolean;
 }
 
 const FeedbackContent = ({
@@ -19,22 +20,23 @@ const FeedbackContent = ({
   user,
   setFeedbackType,
   onSubmit,
+  darkMode = false
 }: FeedbackContentProps) => {
   switch (feedbackType) {
     case FeedbackType.Review:
       return (
-        <ReviewForm onSubmit={onSubmit} projectId={projectId} user={user} />
+        <ReviewForm onSubmit={onSubmit} projectId={projectId} user={user} darkMode={darkMode} />
       );
     case FeedbackType.Idea:
       return (
-        <IdeasForm onSubmit={onSubmit} projectId={projectId} user={user} />
+        <IdeasForm onSubmit={onSubmit} projectId={projectId} user={user} darkMode={darkMode} />
       );
     case FeedbackType.Issue:
       return (
-        <IssuesForm onSubmit={onSubmit} projectId={projectId} user={user} />
+        <IssuesForm onSubmit={onSubmit} projectId={projectId} user={user} darkMode={darkMode} />
       );
     default:
-      return <DefaultView setFeedbackType={setFeedbackType} />;
+      return <DefaultView setFeedbackType={setFeedbackType} darkMode={darkMode} />;
   }
 };
 

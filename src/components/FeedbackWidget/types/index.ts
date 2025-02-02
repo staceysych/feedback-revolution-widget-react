@@ -11,6 +11,7 @@ export interface FeedbackWidgetProps {
   closable?: boolean;
   projectId: string;
   user?: IUser;
+  darkMode?: boolean;
 }
 
 export enum FeedbackType {

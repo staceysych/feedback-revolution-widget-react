@@ -4,15 +4,16 @@ import { widgetActions } from "./utils";
 
 interface DefaultViewProps {
   setFeedbackType: (type: FeedbackType) => void;
+  darkMode?: boolean;
 }
 
-const DefaultView = ({ setFeedbackType }: DefaultViewProps) => {
+const DefaultView = ({ setFeedbackType, darkMode = false }: DefaultViewProps) => {
   const [subtitle, setSubtitle] = useState("");
 
   return (
     <>
       <div className="fr-text-center mb-4">
-        <p className="fr-text-lg fr-font-bold fr-text-brandDarkBlue">
+        <p className={`fr-text-lg fr-font-bold ${darkMode ? 'fr-text-white' : 'fr-text-brandDarkBlue'}`}>
           What's on your mind?
         </p>
       </div>
@@ -20,7 +21,7 @@ const DefaultView = ({ setFeedbackType }: DefaultViewProps) => {
         {widgetActions.map(({ type, subtitle: sub, icon }, index) => (
           <button
             key={index}
-            className="fr-flex fr-flex-col fr-items-center fr-justify-center fr-h-[100px] fr-w-full fr-rounded-lg fr-border fr-border-gray-200 hover:fr-bg-brandLightHover fr-transition fr-bg-brandLight fr-text-brandDarkBlue fr-cursor-pointer fr-gap-1"
+            className={`fr-flex fr-flex-col fr-items-center fr-justify-center fr-h-[100px] fr-w-full fr-rounded-lg fr-border ${darkMode ? 'fr-border-gray-700 hover:fr-bg-gray-700 fr-bg-gray-800 fr-text-white' : 'fr-border-gray-200 hover:fr-bg-brandLightHover fr-bg-brandLight fr-text-brandDarkBlue'} fr-transition fr-cursor-pointer fr-gap-1`}
             onMouseEnter={() => setSubtitle(sub)}
             onMouseLeave={() => setSubtitle("")}
             onClick={() => setFeedbackType(type)}
@@ -30,7 +31,7 @@ const DefaultView = ({ setFeedbackType }: DefaultViewProps) => {
           </button>
         ))}
       </div>
-      <p className="fr-text-xs fr-text-center fr-mt-2 fr-text-brandDarkBlue">
+      <p className={`fr-text-xs fr-text-center fr-mt-2 ${darkMode ? 'fr-text-gray-300' : 'fr-text-brandDarkBlue'}`}>
         {subtitle || "Select an option to provide feedback"}
       </p>
     </>

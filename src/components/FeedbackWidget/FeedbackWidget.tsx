@@ -10,7 +10,8 @@ const FeedbackWidget = ({
   open = false,
   closable = true,
   projectId,
-  user
+  user,
+  darkMode = false
 }: FeedbackWidgetProps) => {
   const [isOpen, setIsOpen] = useState(open);
   const [feedbackType, setFeedbackType] = useState<FeedbackType | undefined>(
@@ -100,12 +101,12 @@ const FeedbackWidget = ({
       >
         {isOpen && (
           <div
-            className="fr-relative fr-p-2 fr-h-[200px] fr-bg-brandWhite fr-shadow-[0_0_10px_rgba(0,0,0,0.1)] fr-rounded-[20px] fr-w-[320px] fr-text-brandDarkBlue fr-mt-2 fr-flex fr-flex-col fr-items-center fr-justify-start"
+            className={`fr-relative fr-p-2 fr-h-[200px] ${darkMode ? 'fr-bg-gray-900 fr-text-white' : 'fr-bg-brandWhite fr-text-brandDarkBlue'} fr-shadow-[0_0_10px_rgba(0,0,0,0.1)] fr-rounded-[20px] fr-w-[320px] fr-mt-2 fr-flex fr-flex-col fr-items-center fr-justify-start`}
           >
             {feedbackType && (
               <button
                 onClick={() => setFeedbackType(undefined)}
-                className="fr-absolute fr-top-2 fr-left-2 hover:fr-text-gray-700 fr-text-brandDarkBlue fr-cursor-pointer"
+                className={`fr-absolute fr-top-2 fr-left-2 ${darkMode ? 'hover:fr-text-gray-300 fr-text-white' : 'hover:fr-text-gray-700 fr-text-brandDarkBlue'} fr-cursor-pointer`}
               >
                 <ArrowLeftIcon className="fr-size-6" />
               </button>
@@ -113,7 +114,7 @@ const FeedbackWidget = ({
             {closable && (
               <button
                 onClick={onClose}
-                className="fr-absolute fr-top-2 fr-right-2 hover:fr-text-gray-700 fr-text-brandDarkBlue fr-cursor-pointer"
+                className={`fr-absolute fr-top-2 fr-right-2 ${darkMode ? 'hover:fr-text-gray-300 fr-text-white' : 'hover:fr-text-gray-700 fr-text-brandDarkBlue'} fr-cursor-pointer`}
               >
                 <XMarkIcon className="fr-size-6" />
               </button>
@@ -121,6 +122,7 @@ const FeedbackWidget = ({
             {submitted ? (
               <SubmitConfirmation
                 onSubmitMoreFeedback={() => setSubmitted(false)}
+                darkMode={darkMode}
               />
             ) : (
               <FeedbackContent
@@ -129,9 +131,10 @@ const FeedbackWidget = ({
                 onSubmit={onSubmit}
                 projectId={projectId}
                 user={user}
+                darkMode={darkMode}
               />
             )}
-            {!feedbackType && <p className="fr-text-[8px] fr-absolute fr-bottom-1 fr-left-1/2 fr-transform -fr-translate-x-1/2 fr-text-center fr-text-brandDarkBlue fr-opacity-40 fr-mt-2">
+            {!feedbackType && <p className={`fr-text-[8px] fr-absolute fr-bottom-1 fr-left-1/2 fr-transform -fr-translate-x-1/2 fr-text-center ${darkMode ? 'fr-text-gray-400' : 'fr-text-brandDarkBlue'} fr-opacity-40 fr-mt-2`}>
               by Feedback Evolution
             </p>}
           </div>

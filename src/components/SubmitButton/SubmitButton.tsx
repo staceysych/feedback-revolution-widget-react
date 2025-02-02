@@ -7,9 +7,10 @@ interface SubmitButtonProps {
   useEmail: boolean;
   onToggleEmail: (checked: boolean) => void;
   enableEmail: boolean;
+  darkMode?: boolean;
 }
 
-const SubmitButton = ({ onSubmit, loading, useEmail, onToggleEmail, enableEmail }: SubmitButtonProps) => {
+const SubmitButton = ({ onSubmit, loading, useEmail, onToggleEmail, enableEmail, darkMode = false }: SubmitButtonProps) => {
   const [email, setEmail] = useState("");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
@@ -24,7 +25,7 @@ const SubmitButton = ({ onSubmit, loading, useEmail, onToggleEmail, enableEmail 
           <input
             type="email"
             placeholder="Enter your email"
-            className="fr-flex-1 fr-min-w-0 fr-h-[32px] fr-p-2 fr-text-xs fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg"
+            className={`fr-flex-1 fr-min-w-0 fr-h-[32px] fr-p-2 fr-text-xs fr-border fr-border-solid ${darkMode ? 'fr-border-gray-700 fr-bg-gray-800 fr-text-white placeholder:fr-text-gray-400' : 'fr-border-gray-200'} fr-rounded-lg`}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
@@ -50,9 +51,9 @@ const SubmitButton = ({ onSubmit, loading, useEmail, onToggleEmail, enableEmail 
                 className="fr-fixed fr-inset-0" 
                 onClick={handleClickOutside}
               />
-              <div className="fr-absolute fr-top-full fr-right-0 fr-mt-1 fr-bg-white fr-rounded-lg fr-shadow-lg fr-border fr-border-gray-200 fr-py-1 fr-z-10">
+              <div className={`fr-absolute fr-top-full fr-right-0 fr-mt-1 ${darkMode ? 'fr-bg-gray-900' : 'fr-bg-white'} fr-rounded-lg fr-shadow-lg fr-border ${darkMode ? 'fr-border-gray-700' : 'fr-border-gray-200'} fr-py-1 fr-z-10`}>
                 <button
-                  className="fr-flex fr-items-center fr-gap-2 fr-px-4 fr-py-2 fr-text-sm fr-text-gray-700 hover:fr-bg-gray-100 fr-w-full fr-whitespace-nowrap"
+                  className={`fr-flex fr-items-center fr-gap-2 fr-px-4 fr-py-2 fr-text-sm ${darkMode ? 'fr-text-white hover:fr-bg-gray-800' : 'fr-text-gray-700 hover:fr-bg-gray-100'} fr-w-full fr-whitespace-nowrap`}
                   onClick={() => {
                     onToggleEmail(false);
                     setIsDropdownOpen(false);
@@ -91,9 +92,9 @@ const SubmitButton = ({ onSubmit, loading, useEmail, onToggleEmail, enableEmail 
                 className="fr-fixed fr-inset-0" 
                 onClick={handleClickOutside}
               />
-              <div className="fr-absolute fr-top-full fr-right-0 fr-mt-1 fr-bg-white fr-rounded-lg fr-shadow-lg fr-border fr-border-gray-200 fr-py-1 fr-z-10">
+              <div className={`fr-absolute fr-top-full fr-right-0 fr-mt-1 ${darkMode ? 'fr-bg-gray-900' : 'fr-bg-white'} fr-rounded-lg fr-shadow-lg fr-border ${darkMode ? 'fr-border-gray-700' : 'fr-border-gray-200'} fr-py-1 fr-z-10`}>
                 <button
-                  className="fr-flex fr-items-center fr-gap-2 fr-px-4 fr-py-2 fr-text-sm fr-text-gray-700 hover:fr-bg-gray-100 fr-w-full fr-whitespace-nowrap"
+                  className={`fr-flex fr-items-center fr-gap-2 fr-px-4 fr-py-2 fr-text-sm ${darkMode ? 'fr-text-white hover:fr-bg-gray-800' : 'fr-text-gray-700 hover:fr-bg-gray-100'} fr-w-full fr-whitespace-nowrap`}
                   onClick={() => {
                     onToggleEmail(true);
                     setIsDropdownOpen(false);

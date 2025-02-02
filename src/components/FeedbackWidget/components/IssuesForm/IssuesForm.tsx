@@ -7,9 +7,10 @@ interface ReviewFormProps {
   onSubmit: () => void;
   projectId: string;
   user: IUser | undefined;
+  darkMode?: boolean;
 }
 
-const IssuesForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
+const IssuesForm = ({ onSubmit, projectId, user, darkMode = false }: ReviewFormProps) => {
   const [review, setReview] = useState("");
   const [severity, setSeverity] = useState("");
   const [loading, setLoading] = useState(false);
@@ -47,12 +48,12 @@ const IssuesForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
 
   return (
     <div className="fr-flex fr-flex-col fr-items-center fr-gap-1 fr-w-full fr-h-full fr-justify-between">
-      <h2 className="fr-text-md fr-font-bold">Report an issue</h2>
+      <h2 className={`fr-text-md fr-font-bold ${darkMode ? 'fr-text-white' : ''}`}>Report an issue</h2>
 
       <div className="fr-form-control fr-w-full">
         <textarea
           autoFocus
-          className="fr-inline-flex fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-h-[70px] fr-p-2 fr-text-xs fr-w-full"
+          className={`fr-inline-flex fr-border fr-border-solid ${darkMode ? 'fr-border-gray-700 fr-bg-gray-800 fr-text-white placeholder:fr-text-gray-400' : 'fr-border-gray-200'} fr-rounded-lg fr-h-[70px] fr-p-2 fr-text-xs fr-w-full`}
           placeholder="Describe the problem you encountered. We'll work on fixing it!"
           value={review}
           onChange={handleReviewChange}
@@ -61,7 +62,7 @@ const IssuesForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
 
       <div className="fr-form-control fr-w-full">
         <select
-          className="fr-inline-flex fr-h-[32px] fr-p-2 fr-text-xs fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-w-full"
+          className={`fr-inline-flex fr-h-[32px] fr-p-2 fr-text-xs fr-border fr-border-solid ${darkMode ? 'fr-border-gray-700 fr-bg-gray-800 fr-text-white' : 'fr-border-gray-200'} fr-rounded-lg fr-w-full`}
           value={severity}
           onChange={handleSeverityChange}
         >
@@ -80,6 +81,7 @@ const IssuesForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
         enableEmail={!user}
         useEmail={useEmail}
         onToggleEmail={setUseEmail}
+        darkMode={darkMode}
       />
     </div>
   );

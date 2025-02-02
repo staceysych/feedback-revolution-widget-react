@@ -2,15 +2,17 @@ import { CheckBadgeIcon } from "@heroicons/react/24/solid";
 
 interface SubmitConfirmationProps {
   onSubmitMoreFeedback: () => void;
+  darkMode?: boolean;
 }
 
 const SubmitConfirmation = ({
   onSubmitMoreFeedback,
+  darkMode = false
 }: SubmitConfirmationProps) => {
   return (
     <div className="fr-flex fr-flex-col fr-items-center fr-justify-center fr-w-full fr-gap-4 fr-h-full">
       <CheckBadgeIcon className="fr-text-green-500 fr-size-10 " />
-      <p className="fr-text-xl fr-font-bold fr-text-center">
+      <p className={`fr-text-xl fr-font-bold fr-text-center ${darkMode ? 'fr-text-white' : ''}`}>
         Thank you! We received your feedback.
       </p>
       <button

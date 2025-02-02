@@ -1,4 +1,4 @@
-import { StarIcon as SolidStarIcon } from "@heroicons/react/24/solid";
+import { StarIcon } from "@heroicons/react/24/solid";
 import { StarIcon as OutlineStarIcon } from "@heroicons/react/24/outline";
 
 interface StarRatingProps {
@@ -8,6 +8,7 @@ interface StarRatingProps {
   rating: number;
   showRating?: boolean;
   size?: number;
+  darkMode?: boolean;
 }
 
 const StarRating = ({
@@ -17,6 +18,7 @@ const StarRating = ({
   rating,
   showRating = true,
   size = 32,
+  darkMode = false,
 }: StarRatingProps) => {
   const handleRating = (newRating: number) => {
     setRating && setRating(newRating);
@@ -34,17 +36,13 @@ const StarRating = ({
             className="fr-cursor-pointer"
             onClick={() => handleRating(index + 1)}
           >
-            {index < rating ? (
-              <SolidStarIcon
-                className="fr-text-yellow-500"
-                style={{ width: `${size}px`, height: `${size}px` }}
-              />
-            ) : (
-              <OutlineStarIcon
-                className="fr-text-gray-300"
-                style={{ width: `${size}px`, height: `${size}px` }}
-              />
-            )}
+            <StarIcon
+              className={`fr-size-6 ${
+                index + 1 <= rating
+                  ? "fr-text-yellow-400"
+                  : darkMode ? "fr-text-gray-700" : "fr-text-gray-200"
+              }`}
+            />
           </button>
         ))}
       </div>
