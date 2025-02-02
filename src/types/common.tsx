@@ -3,3 +3,10 @@ export enum Progress {
   Building = "Building",
   Done = "Done",
 }
+
+export enum RatingIconType {
+  Stars = 'stars',
+  Faces = 'faces',
+  Thumbs = 'thumbs',
+  Hearts = 'hearts'
+}

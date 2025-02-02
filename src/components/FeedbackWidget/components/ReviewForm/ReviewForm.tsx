@@ -1,18 +1,19 @@
 import React, { useState } from "react";
 
-import StarRating from "../../../StarRating";
+import StarRating, {  } from "../../../StarRating/StarRating";
 import SubmitButton from "../../../SubmitButton";
 import { REVIEWS_API } from "../../../../utils/defaults";
 import { IUser } from "../../types";
-
+import { RatingIconType } from "../../../../types/common";
 interface ReviewFormProps {
   onSubmit: () => void;
   projectId: string;
   user: IUser | undefined;
   darkMode?: boolean;
+  ratingIconType?: RatingIconType;
 }
 
-const ReviewForm = ({ onSubmit, projectId, user, darkMode = false }: ReviewFormProps) => {
+const ReviewForm = ({ onSubmit, projectId, user, darkMode = false, ratingIconType }: ReviewFormProps) => {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState(0);
   const [loading, setLoading] = useState(false);
@@ -59,7 +60,7 @@ const ReviewForm = ({ onSubmit, projectId, user, darkMode = false }: ReviewFormP
         />
       </div>
 
-      <StarRating setRating={setRating} rating={rating} darkMode={darkMode}/>
+      <StarRating setRating={setRating} rating={rating} darkMode={darkMode} iconType={ratingIconType}/>
       <SubmitButton
         onSubmit={enableSubmit ? handleSubmit : undefined}
         loading={loading}

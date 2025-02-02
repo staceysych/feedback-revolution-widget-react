@@ -1,5 +1,5 @@
 import { FeedbackType, IUser } from "../../types";
-
+import { RatingIconType } from "../../../../types/common";
 import ReviewForm from "../ReviewForm";
 import DefaultView from "../DefaultView";
 import IdeasForm from "../IdeasForm";
@@ -12,6 +12,7 @@ interface FeedbackContentProps {
   projectId: string;
   user: IUser | undefined;
   darkMode?: boolean;
+  ratingIconType?: RatingIconType;
 }
 
 const FeedbackContent = ({
@@ -20,12 +21,13 @@ const FeedbackContent = ({
   user,
   setFeedbackType,
   onSubmit,
-  darkMode = false
+  darkMode = false,
+  ratingIconType
 }: FeedbackContentProps) => {
   switch (feedbackType) {
     case FeedbackType.Review:
       return (
-        <ReviewForm onSubmit={onSubmit} projectId={projectId} user={user} darkMode={darkMode} />
+        <ReviewForm onSubmit={onSubmit} projectId={projectId} user={user} darkMode={darkMode} ratingIconType={ratingIconType} />
       );
     case FeedbackType.Idea:
       return (

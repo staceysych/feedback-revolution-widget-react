@@ -1,6 +1,7 @@
 import { cloneElement, useState, useEffect, useRef } from "react";
 import { ArrowLeftIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { FeedbackType, FeedbackWidgetProps } from "./types";
+import { FeedbackType, FeedbackWidgetProps,  } from "./types";
+import { RatingIconType } from "../../types/common";
 
 import FeedbackContent from "./components/FeedbackContent";
 import SubmitConfirmation from "./components/SubmitConfirmation";
@@ -11,7 +12,8 @@ const FeedbackWidget = ({
   closable = true,
   projectId,
   user,
-  darkMode = false
+  darkMode = false,
+  ratingIconType,
 }: FeedbackWidgetProps) => {
   const [isOpen, setIsOpen] = useState(open);
   const [feedbackType, setFeedbackType] = useState<FeedbackType | undefined>(
@@ -132,6 +134,7 @@ const FeedbackWidget = ({
                 projectId={projectId}
                 user={user}
                 darkMode={darkMode}
+                ratingIconType={ratingIconType}
               />
             )}
             {!feedbackType && <p className={`fr-text-[8px] fr-absolute fr-bottom-1 fr-left-1/2 fr-transform -fr-translate-x-1/2 fr-text-center ${darkMode ? 'fr-text-gray-400' : 'fr-text-brandDarkBlue'} fr-opacity-40 fr-mt-2`}>

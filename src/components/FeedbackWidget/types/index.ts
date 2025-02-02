@@ -1,4 +1,6 @@
 import { ReactElement } from "react";
+import { RatingIconType } from "../../../types/common";
+
 
 export interface IUser {
   name?: string;
@@ -12,6 +14,7 @@ export interface FeedbackWidgetProps {
   projectId: string;
   user?: IUser;
   darkMode?: boolean;
+  ratingIconType?: RatingIconType;
 }
 
 export enum FeedbackType {
@@ -19,3 +22,4 @@ export enum FeedbackType {
   Idea = "Idea",
   Issue = "Issue",
 }
+
