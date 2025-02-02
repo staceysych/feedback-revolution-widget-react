@@ -94,7 +94,7 @@ const FeedbackWidget = ({
           position: triggerComponent ? "absolute" : "static",
           zIndex: triggerElement ? 999 : 0,
           minWidth: "320px",
-          maxWidth: "384px",
+          maxWidth: "320px",
           margin: "0 auto",
           ...position,
           transform: position.left === '50%' ? 'translateX(-50%)' : 'none',

@@ -50,7 +50,7 @@ const ReviewForm = ({ onSubmit, projectId, user, darkMode = false, ratingIconTyp
     <div className="fr-flex fr-flex-col fr-items-center fr-gap-2 fr-w-full fr-h-full">
       <h2 className={`fr-text-md fr-font-bold ${darkMode ? 'fr-text-white' : ''}`}>Tell us what you think</h2>
 
-      <div className="fr-form-control fr-w-full">
+      <div className="fr-form-control fr-w-full fr-h-[70px]">
         <textarea
           autoFocus
           className={`fr-inline-flex fr-border fr-border-solid ${darkMode ? 'fr-border-gray-700 fr-bg-gray-800 fr-text-white placeholder:fr-text-gray-400' : 'fr-border-gray-200'} fr-rounded-lg fr-h-[70px] fr-p-2 fr-text-xs fr-w-full`}
