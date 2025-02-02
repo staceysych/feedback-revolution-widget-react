@@ -100,7 +100,7 @@ const FeedbackWidget = ({
       >
         {isOpen && (
           <div
-            className="fr-relative fr-p-5 fr-bg-brandWhite fr-shadow-lg fr-rounded-lg fr-w-full sm:fr-w-96 fr-h-64 fr-text-brandDarkBlue fr-mt-2 fr-flex fr-flex-col fr-items-center fr-justify-start"
+            className="fr-relative fr-p-2 fr-h-[200px] fr-bg-brandWhite fr-shadow-[0_0_10px_rgba(0,0,0,0.1)] fr-rounded-[20px] fr-w-[320px] fr-text-brandDarkBlue fr-mt-2 fr-flex fr-flex-col fr-items-center fr-justify-start"
           >
             {feedbackType && (
               <button
@@ -131,9 +131,9 @@ const FeedbackWidget = ({
                 user={user}
               />
             )}
-            <p className="fr-text-[8px] fr-absolute fr-bottom-1 fr-left-1/2 fr-transform -fr-translate-x-1/2 fr-text-center fr-text-brandDarkBlue fr-opacity-40 fr-mt-2">
+            {!feedbackType && <p className="fr-text-[8px] fr-absolute fr-bottom-1 fr-left-1/2 fr-transform -fr-translate-x-1/2 fr-text-center fr-text-brandDarkBlue fr-opacity-40 fr-mt-2">
               by Feedback Evolution
-            </p>
+            </p>}
           </div>
         )}
       </div>

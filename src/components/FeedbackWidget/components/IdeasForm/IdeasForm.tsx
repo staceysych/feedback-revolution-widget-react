@@ -51,7 +51,7 @@ const IdeasForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
       <div className="fr-form-control fr-w-full">
         <textarea
           autoFocus
-          className="fr-inline-flex fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-h-20 fr-p-2 fr-text-sm fr-w-full"
+          className="fr-inline-flex fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-h-[70px] fr-p-2 fr-text-xs fr-w-full"
           placeholder="Got a great idea? Let us know how we can make things better!"
           value={review}
           onChange={handleReviewChange}
@@ -60,7 +60,7 @@ const IdeasForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
 
       <div className="fr-form-control fr-w-full">
         <select
-          className="fr-inline-flex fr-h-[36px] fr-p-2 fr-text-sm fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-w-full"
+          className="fr-inline-flex fr-h-[32px] fr-p-2 fr-text-xs fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-w-full"
           value={category}
           onChange={handleCategoryChange}
         >

@@ -45,20 +45,20 @@ const ReviewForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
   };
 
   return (
-    <div className="fr-flex fr-flex-col fr-items-center fr-gap-1 fr-w-full fr-h-full fr-justify-between">
+    <div className="fr-flex fr-flex-col fr-items-center fr-gap-2 fr-w-full fr-h-full">
       <h2 className="fr-text-md fr-font-bold">Tell us what you think</h2>
 
       <div className="fr-form-control fr-w-full">
         <textarea
           autoFocus
-          className="fr-inline-flex fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-h-20 fr-p-2 fr-text-sm fr-w-full"
+          className="fr-inline-flex fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-h-[70px] fr-p-2 fr-text-xs fr-w-full"
           placeholder="We'd love to hear your thoughts! Leave us a review."
           value={review}
           onChange={handleReviewChange}
         />
       </div>
 
-      <StarRating setRating={setRating} rating={rating} />
+      <StarRating setRating={setRating} rating={rating}/>
       <SubmitButton
         onSubmit={enableSubmit ? handleSubmit : undefined}
         loading={loading}

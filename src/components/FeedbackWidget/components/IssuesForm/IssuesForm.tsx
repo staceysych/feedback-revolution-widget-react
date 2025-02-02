@@ -52,7 +52,7 @@ const IssuesForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
       <div className="fr-form-control fr-w-full">
         <textarea
           autoFocus
-          className="fr-inline-flex fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-h-20 fr-p-2 fr-text-sm fr-w-full"
+          className="fr-inline-flex fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-h-[70px] fr-p-2 fr-text-xs fr-w-full"
           placeholder="Describe the problem you encountered. We'll work on fixing it!"
           value={review}
           onChange={handleReviewChange}
@@ -61,7 +61,7 @@ const IssuesForm = ({ onSubmit, projectId, user }: ReviewFormProps) => {
 
       <div className="fr-form-control fr-w-full">
         <select
-          className="fr-inline-flex fr-h-[36px] fr-p-2 fr-text-sm fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-w-full"
+          className="fr-inline-flex fr-h-[32px] fr-p-2 fr-text-xs fr-border fr-border-solid fr-border-gray-200 fr-rounded-lg fr-w-full"
           value={severity}
           onChange={handleSeverityChange}
         >
